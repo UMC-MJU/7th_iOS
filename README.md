@@ -38,7 +38,7 @@ Copyright © Sojung Park (Bei) All rights reserved.
 
 
 ## 🍀 Members
-| [![텍스트](https://avatars.githubusercontent.com/u/128218483?v=4)](https://github.com/SickOfU) | [![텍스트](https://avatars.githubusercontent.com/u/164713708?v=4)](https://github.com/bae-suho) | 
+| [![텍스트](https://avatars.githubusercontent.com/u/128218483?v=4)](https://github.com/SickOfU) | [![텍스트](https://avatars.githubusercontent.com/u/115385697?s=400&u=ed1b1c84f29ed00077eff5afd0b28a353de36fc2&v=4)](https://github.com/bae-suho) | 
 |:---:|:---:|
 | 레몬/손현빈 | 후쏘/배수호 |
 
