@@ -99,27 +99,56 @@ class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-//
-//    // 카카오로그인 버튼
-//    lazy var kakaoLoginButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("카카오로 로그인", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-//        button.setTitleColor(.white, for: .normal)
-//        button.layer.cornerRadius = 8.0
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//    // Apple로그인 버튼
-//    lazy var appleLoginButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Apple로 로그인", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-//        button.layer.cornerRadius = 8.0
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//    
+    
+    // 카카오로그인 버튼
+    lazy var kakaoLoginButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderColor = UIColor(named: "BorderColor")?.cgColor
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 10.0
+        button.clipsToBounds = true
+        
+        
+        // 이미지 설정
+        button.setImage(UIImage(named: "KakaoIcon"), for: .normal) // "kakao_icon"에 해당하는 이미지 넣기
+        button.imageView?.contentMode = .scaleAspectFit
+        
+        // 이미지와 텍스트의 간격 설정
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -164, bottom: 0, right: 0)
+     
+        
+        button.setTitle("카카오로 로그인", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8.0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    // Apple로그인 버튼
+    lazy var appleLoginButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderColor = UIColor(named: "BorderColor")?.cgColor
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 10.0
+        button.clipsToBounds = true
+        
+        // 이미지 설정
+        button.setImage(UIImage(named: "AppleIcon"), for: .normal) // "kakao_icon"에 해당하는 이미지 넣기
+        button.imageView?.contentMode = .scaleAspectFit
+        
+        // 이미지와 텍스트의 간격 설정
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -164, bottom: 0, right: 0)
+  
+        
+        button.setTitle("Apple로 로그인", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 8.0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    
     private func addComponents() {
         self.addSubview(logoImage)
         self.addSubview(idText)
@@ -127,6 +156,8 @@ class LoginView: UIView {
         self.addSubview(idTextField)
         self.addSubview(pwdTextField)
         self.addSubview(loginButton)
+        self.addSubview(kakaoLoginButton)
+        self.addSubview(appleLoginButton)
         
         NSLayoutConstraint.activate([
             // 상단로고 이미지
@@ -162,6 +193,18 @@ class LoginView: UIView {
             loginButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0446),
             loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             loginButton.topAnchor.constraint(equalTo: pwdTextField.bottomAnchor, constant: 17),
+            
+            // 카카오 로그인 버튼
+            kakaoLoginButton.widthAnchor.constraint(equalTo: pwdText.widthAnchor),
+            kakaoLoginButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0447),
+            kakaoLoginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            kakaoLoginButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 561),
+            
+            // 애플 로그인 버튼
+            appleLoginButton.widthAnchor.constraint(equalTo: pwdText.widthAnchor),
+            appleLoginButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0447),
+            appleLoginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            appleLoginButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 623),
             
         ])
     }
