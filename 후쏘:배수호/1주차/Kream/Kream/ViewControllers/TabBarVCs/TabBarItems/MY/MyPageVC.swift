@@ -15,7 +15,6 @@ class MyPageVC: UIViewController, MyPageViewDelegate {
 extension MyPageVC {
     func didTapEditProfileButton() {
         let viewController = EditProfileVC()
-        print("test")
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

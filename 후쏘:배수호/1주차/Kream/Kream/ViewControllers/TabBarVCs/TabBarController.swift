@@ -24,7 +24,8 @@ class TabBarController: UITabBarController {
         savedVC.tabBarItem = UITabBarItem(title: "SAVED", image: UIImage(named: "Saved_icon"), tag: 3)
         myPageVC.tabBarItem = UITabBarItem(title: "MY", image: UIImage(named: "My_icon"), tag: 4)
         self.viewControllers = [homeVC, styleVC, shopVC, savedVC, myPageVC]
-        self.tabBar.unselectedItemTintColor = .black
+        self.tabBar.unselectedItemTintColor = .gray
+        self.tabBar.tintColor = .black
     }
 
 }

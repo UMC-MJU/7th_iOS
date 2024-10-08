@@ -38,16 +38,12 @@ class LoginView: UIView {
     // id 텍스트 필드
     lazy var idTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.borderColor = UIColor(named: "BorderColor")?.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 15.0
         textField.clipsToBounds = true
-        
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "PlaceholderColor") ?? .gray,
-            .font: UIFont.systemFont(ofSize: 12)
-        ]
-        textField.attributedPlaceholder = NSAttributedString(string: "예) kream@kream.co.kr", attributes: placeholderAttributes)
+        textField.placeholder = "kream@kream.co.kr"
+        textField.font = .systemFont(ofSize: 12)
         setPaddingLeftRight(textField: textField)
         return textField
     }()
@@ -63,16 +59,12 @@ class LoginView: UIView {
     // pwd 텍스트 필드
     lazy var pwdTextField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.borderColor = UIColor(named: "BorderColor")?.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 15.0
         textField.clipsToBounds = true
-
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(named: "PlaceholderColor") ?? .gray,
-            .font: UIFont.systemFont(ofSize: 12)
-        ]
-        textField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 입력해주세요", attributes: placeholderAttributes)
+        textField.placeholder = "비밀번호를 입력해주세요"
+        textField.font = .systemFont(ofSize: 12)
         textField.isSecureTextEntry = true
         setPaddingLeftRight(textField: textField)
         return textField
@@ -178,7 +170,7 @@ class LoginView: UIView {
         socialLoginStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(credentialsStackView.snp.bottom).offset(48)
-            make.width.equalToSuperview().multipliedBy(0.74)
+//            make.width.equalToSuperview().multipliedBy(0.74)
         }
     }
     
