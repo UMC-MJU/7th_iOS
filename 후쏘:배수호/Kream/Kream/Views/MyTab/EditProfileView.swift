@@ -3,9 +3,6 @@
 import UIKit
 
 class EditProfileView: UIView {
-
-    lazy var emailStatus:Status = .change
-    lazy var pwdStatus:Status = .change
     
     lazy var userImage: UIImageView = {
         let imageView = UIImageView()
@@ -39,8 +36,8 @@ class EditProfileView: UIView {
         
         setPaddingLeftRight(textField: textField)
         
-        // 변경 버튼 클릭 후 수정 가능
-        textField.isEnabled = false
+        // 변경 버튼 클릭 전에 클릭 이벤트 막기
+        textField.isUserInteractionEnabled = false
         return textField
     }()
     
@@ -75,8 +72,9 @@ class EditProfileView: UIView {
         
         setPaddingLeftRight(textField: textField)
         
-        // 변경 버튼 클릭 후 수정 가능
-        textField.isEnabled = false
+        
+        // 변경 버튼 클릭 전에 클릭 이벤트 막기
+        textField.isUserInteractionEnabled = false
         return textField
     }()
     
@@ -132,7 +130,6 @@ class EditProfileView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.addComponents()
-        self.addActions()
     }
     
     required init?(coder: NSCoder) {
@@ -173,51 +170,5 @@ class EditProfileView: UIView {
         textField.rightView = paddingView
         textField.rightViewMode = .always
     }
-    
-    private func addActions(){
-        changeEmailButton.addTarget(self, action: #selector(changeEmailButtonTapped), for: .touchUpInside)
-        changePwdButton.addTarget(self, action: #selector(changePwdButtonTapped), for: .touchUpInside)
-    
-    }
-    
-    
-    //MARK: 변경 버튼 클릭 시 이벤트
-    @objc
-    private func changeEmailButtonTapped() {
-        switch emailStatus {
-        case .change:
-            emailTextField.text = ""
-            emailTextField.isEnabled = true
-            emailTextField.placeholder = "새로운 이메일을 입력해주세요!"
-            emailStatus = .confirm
-            changeEmailButton.setTitle("확인", for: .normal)
-            
-        case .confirm:
-            emailTextField.isEnabled = false
-            emailStatus = .change
-            changeEmailButton.setTitle("변경", for: .normal)
-        }
-     }
-    
-    @objc
-    private func changePwdButtonTapped() {
-        switch pwdStatus {
-        case .change:
-            pwdTextField.text = ""
-            pwdTextField.isEnabled = true
-            pwdTextField.placeholder = "새로운 비밀번호를 입력해주세요!"
-            pwdStatus = .confirm
-            changePwdButton.setTitle("확인", for: .normal)
-            
-        case .confirm:
-            pwdTextField.isEnabled = false
-            pwdStatus = .change
-            changePwdButton.setTitle("변경", for: .normal)
-        }
-     }
 }
 
-enum Status {
-    case change
-    case confirm
-}
