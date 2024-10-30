@@ -27,7 +27,6 @@ class EditProfileView: UIView {
     
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "example@naver.com"
         
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
@@ -62,8 +61,6 @@ class EditProfileView: UIView {
     
     lazy var pwdTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "test1234"
-        textField.isSecureTextEntry = true
         
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1

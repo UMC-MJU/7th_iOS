@@ -42,6 +42,7 @@ extension LoginVC {
             }
             else {
                 print("로그인 실패, 아이디/비밀번호 불일치")
+                print(storedUserInfo)
             }
         }
         else {
