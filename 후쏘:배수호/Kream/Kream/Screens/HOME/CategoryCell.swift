@@ -15,7 +15,6 @@ class CategoryCell: UICollectionViewCell {
     }
 
     lazy var categoryNameLabel = UILabel().then { label in
-        label.text = "티니핑"
         label.font = UIFont.systemFont(ofSize: 11.5, weight: .light)
         label.textColor = .black
     }
