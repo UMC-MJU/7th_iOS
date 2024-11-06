@@ -8,7 +8,8 @@ class HomeView: UIView {
     let leftPadding = [12, 63, 115, 196, 262, 313]
 
     // MARK: - 컴포넌트 선언부
-    // First Section
+    
+    // MARK: - First Section
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -87,6 +88,12 @@ class HomeView: UIView {
         view.backgroundColor = UIColor(named: "DivideLineColor")
     }
     
+    lazy var divideLine2 = UIView().then { view in
+        view.backgroundColor = UIColor(named: "DivideLineColor")
+    }
+    
+    
+    //MARK: - Second Section
     lazy var title1 = UILabel().then{ label in
         label.text = "Just Dropped"
         label.font = UIFont.systemFont(ofSize: 16,weight: .bold)
@@ -104,11 +111,36 @@ class HomeView: UIView {
         layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .horizontal
     })).then { collectionView in
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.register(NewProductCell.self, forCellWithReuseIdentifier: NewProductCell.identifier)
     }
-        
+    
+    //MARK: - Second Section
+    lazy var title2 = UILabel().then{ label in
+        label.text = "본격 한파대비! 연말 필수템 모음"
+        label.font = UIFont.systemFont(ofSize: 16,weight: .bold)
+        label.textColor = .black
+    }
+    
+    lazy var subTitle2 = UILabel().then { label in
+        label.text = "해피홀리룩챌린지"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        label.textColor = UIColor(named: "SubTitleColor")
+    }
+    
+    lazy var influencerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then({ layout in
+        layout.estimatedItemSize = .init(width: 124, height: 165)
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .horizontal
+    })).then { collectionView in
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.register(InfluencerCell.self, forCellWithReuseIdentifier: InfluencerCell.identifier)
+    }
 
+    
+    
     // MARK: init, 함수 선언부
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -134,6 +166,10 @@ class HomeView: UIView {
         contentView.addSubview(title1)
         contentView.addSubview(subTitle1)
         contentView.addSubview(newProductCollectionView)
+        contentView.addSubview(divideLine2)
+        contentView.addSubview(title2)
+        contentView.addSubview(subTitle2)
+        contentView.addSubview(influencerCollectionView)
         
         topStackView.addArrangedSubview(searchBar)
         topStackView.addArrangedSubview(alertButton)
@@ -204,10 +240,35 @@ class HomeView: UIView {
         
         newProductCollectionView.snp.makeConstraints { make in
             make.top.equalTo(subTitle1.snp.bottom).offset(14)
-            make.left.right.equalToSuperview().offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
             make.height.equalTo(237)
-            make.bottom.equalToSuperview().offset(-20)
         }
+        
+        divideLine2.snp.makeConstraints { make in
+            make.top.equalTo(newProductCollectionView.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        title2.snp.makeConstraints { make in
+            make.top.equalTo(divideLine2.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        subTitle2.snp.makeConstraints { make in
+            make.top.equalTo(title2.snp.bottom).offset(4)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        influencerCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(subTitle2.snp.bottom).offset(14)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(165)
+            make.bottom.equalToSuperview().offset(-100)
+        }
+        
     }
 
     @objc private func segmentChanged(_ sender: UISegmentedControl) {

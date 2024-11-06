@@ -23,7 +23,6 @@ class NewProductCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 12, weight: .light)
         label.textColor = .black
         label.numberOfLines = 2
-       
     }
    
     lazy var price = UILabel().then { label in
@@ -63,15 +62,15 @@ class NewProductCell: UICollectionViewCell {
         }
         brandName.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(4)        }
+            make.left.equalToSuperview().offset(4)
+        }
         name.snp.makeConstraints { make in
             make.top.equalTo(brandName.snp.bottom).offset(3)
             make.left.equalToSuperview().offset(4)
             make.width.equalTo(124)
-            make.height.equalTo(28)
         }
         price.snp.makeConstraints { make in
-            make.top.equalTo(name.snp.bottom).offset(12)
+            make.top.equalTo(brandName.snp.bottom).offset(43)
             make.left.equalToSuperview().offset(4)
         }
         nowPriceLabel.snp.makeConstraints { make in

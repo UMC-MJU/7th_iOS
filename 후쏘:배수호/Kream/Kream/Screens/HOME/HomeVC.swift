@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
     private func setDelegate(){
         homeView.categoryCollectionView.dataSource = self
         homeView.newProductCollectionView.dataSource = self
+        homeView.influencerCollectionView.dataSource = self
     }
 
 
@@ -32,6 +33,9 @@ extension HomeVC: UICollectionViewDataSource {
         }
         else if collectionView == homeView.newProductCollectionView {
             return DummyNewProduct.data.count
+        }
+        else if collectionView == homeView.influencerCollectionView {
+            return DummyInfluencer.data.count
         }
         return 0
     }
@@ -62,6 +66,21 @@ extension HomeVC: UICollectionViewDataSource {
             }
             print("created cell")
             let data = DummyNewProduct.data
+            
+            cell.configure(model: data[indexPath.row])
+            
+            return cell
+        }
+        else if collectionView == homeView.influencerCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: InfluencerCell.identifier,
+                for: indexPath) as? InfluencerCell
+            else {
+                print("failed to create")
+                return UICollectionViewCell()
+            }
+            print("created cell")
+            let data = DummyInfluencer.data
             
             cell.configure(model: data[indexPath.row])
             

@@ -18,6 +18,12 @@ final class DummyNewProduct {
     static let data: [NewProductInfo] = [
         NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원"),
         NewProductInfo(image: "NewProduct_image2", brand: "Jordan", name: "Jordan 1 Retro High OG Yellow Ochre", nowPrice: "228,000원"),
+        NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원"),
+        NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원"),
+        NewProductInfo(image: "NewProduct_image2", brand: "Jordan", name: "Jordan 1 Retro High OG Yellow Ochre", nowPrice: "228,000원"),
+        NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원"),
+        NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원"),
+        NewProductInfo(image: "NewProduct_image2", brand: "Jordan", name: "Jordan 1 Retro High OG Yellow Ochre", nowPrice: "228,000원"),
         NewProductInfo(image: "NewProduct_image1", brand: "MBL", name: "청키라이너 뉴욕양키스", nowPrice: "139,000원")
     ]
 }

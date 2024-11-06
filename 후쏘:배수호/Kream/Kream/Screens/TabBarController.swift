@@ -4,19 +4,20 @@ import Then
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
     private let homeVC = HomeVC()
     private let styleVC = StyleVC()
     private let shopVC = ShopVC()
     private let savedVC = SavedVC()
     private let myPageVC = UINavigationController(rootViewController: MyPageVC())
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBarItems()
         appearance()
+        setTabBarTopBorder()
     }
     
     // 탭바 아이템 설정 - 홈 / 스타일 / 쇼핑 / 즐겨찾기 / 마이페이지
@@ -41,5 +42,18 @@ class TabBarController: UITabBarController {
         self.tabBar.standardAppearance = barAppearance
         self.tabBar.backgroundColor = .clear
     }
-           
+    
+    private func setTabBarTopBorder(){
+
+//        let topBorder = UIView()
+//        topBorder.backgroundColor = UIColor(named: "DivideLineColor")
+//        tabBar.addSubview(topBorder)
+//        
+//        topBorder.snp.makeConstraints { make in
+//            make.top.equalTo(tabBar).offset(-14)
+//            make.leading.trailing.equalTo(tabBar)
+//            make.height.equalTo(1)
+//        }
+//     
+    }
 }
