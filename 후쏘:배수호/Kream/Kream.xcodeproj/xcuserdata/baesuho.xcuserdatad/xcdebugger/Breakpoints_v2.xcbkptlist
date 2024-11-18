@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B15FF982-6303-4D92-AD97-5E6E2B2926DB"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C97CC1A9-ABF2-42F6-A419-C4530B36D68A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kream/Screens/HOME/Cell/CategoryCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "setConstraints()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0650EB45-4CE0-4C82-9BB1-B44D33B49534"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kream/Screens/HOME/Cell/CategoryCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "CategoryCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D106EDE6-E150-4BFC-A1FC-8D5ED217EA17"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kream/Screens/HOME/Cell/CategoryCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "CategoryCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "D106EDE6-E150-4BFC-A1FC-8D5ED217EA17 - f49469f800f131fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kream.CategoryCell.__deallocating_deinit"
+                  moduleName = "Kream.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baesuho/Documents/GitHub/7th_iOS/%E1%84%92%E1%85%AE%E1%84%8A%E1%85%A9:%E1%84%87%E1%85%A2%E1%84%89%E1%85%AE%E1%84%92%E1%85%A9/Kream/Kream/Screens/HOME/Cell/CategoryCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "D106EDE6-E150-4BFC-A1FC-8D5ED217EA17 - d7615b3401f0558d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kream.CategoryCell.__ivar_destroyer"
+                  moduleName = "Kream.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/baesuho/Documents/GitHub/7th_iOS/%E1%84%92%E1%85%AE%E1%84%8A%E1%85%A9:%E1%84%87%E1%85%A2%E1%84%89%E1%85%AE%E1%84%92%E1%85%A9/Kream/Kream/Screens/HOME/Cell/CategoryCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
