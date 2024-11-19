@@ -80,7 +80,7 @@ class HomecollectionLayout {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 10, bottom: 30, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 16, bottom: 30, trailing: 10)
         section.boundarySupplementaryItems = [createHeaderItem(), createFooterItem()]
         
         return section

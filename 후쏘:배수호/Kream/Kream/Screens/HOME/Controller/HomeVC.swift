@@ -103,4 +103,15 @@ extension HomeVC {
         }
     }
     
+    ///
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2{
+            let newViewController = PurchaseVC()
+            let navigationController = UINavigationController(rootViewController: newViewController)
+            
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true)
+        }
+    }
+    
 }
