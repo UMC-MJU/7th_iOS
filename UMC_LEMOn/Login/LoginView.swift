@@ -35,8 +35,8 @@ class LoginView: UIView {
         return btn
     }()
     // 카카오 로그인 버튼
-    private lazy var kakaoBtn: UIButton = makeSocialBtn(image: "kakao.pdf", title:"카카오로 로그인")
-    private lazy var appleBtn: UIButton = makeSocialBtn(image: "apple.pdf", title: "APPlE로 로그인")
+    private lazy var kakaoBtn: UIButton = makeSocialBtn(image: "kakao.png", title:"카카오로 로그인")
+    private lazy var appleBtn: UIButton = makeSocialBtn(image: "apple.png", title: "APPlE로 로그인")
     private lazy var idStackView: UIStackView = makeStackView(spacing : 8)
     private lazy var pwdStackView: UIStackView = makeStackView(spacing: 8)
 

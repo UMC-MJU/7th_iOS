@@ -20,25 +20,34 @@ class HomeView: UIView {
             make.placeholder = "브랜드, 상품, 프로필, 태그 등"
             make.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 1))
             make.textColor = .black
-            make.backgroundColor = UIColor(named: "SearchBarColor")
+        make.backgroundColor = .lightGray
+        
+           // make.backgroundColor = UIColor(named: "SearchBarColor")
             make.font = UIFont.systemFont(ofSize: 13.5)
             make.layer.cornerRadius = 12
+           // 임시 디버깅용
+        make.snp.makeConstraints{make in
+            make.height.equalTo(40) // 고정 높이
+            make.width.greaterThanOrEqualTo(303)
+        }
             make.layer.masksToBounds = true
         }
+    
     lazy var alertButton = UIButton().then { button in
-            button.setImage(UIImage(named: "Alert_icon"), for: .normal)
+            button.setImage(UIImage(named: "Alert_icon") ?? UIImage(systemName: "bell"), for: .normal)
             button.imageView?.contentMode = .scaleAspectFill
         }
+    
     lazy var topStackView = UIStackView().then { make in
         make.axis = .horizontal
         make.spacing = 15
-        make.distribution = .fill // 모든 서브뷰가 고르게 분포되도록 설정
         make.alignment = .center
         }
+    
     lazy var underline = UIView().then { make in
             make.backgroundColor = .black
         }
-    
+    // segmentedcontrol로 위에 6개 나타내기
     let items: [String] = ["추천", "랭킹", "발매정보", "럭셔리", "남성", "여성"]
      //상단 카테고리 부분
     lazy var category = UISegmentedControl(items: items).then { make in
@@ -64,9 +73,10 @@ class HomeView: UIView {
     }
         // 중간에 라지 이미지
     lazy var LargeImageView = UIImageView().then { make in
-         make.image = UIImage(named: "Advertise_image")
+         make.image = UIImage(named: "111")
         make.contentMode = .scaleAspectFill
      }
+    
     lazy var TopCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then({ make in
            make.estimatedItemSize = .init(width: 60, height: 80)
         make.minimumInteritemSpacing = 10
@@ -94,7 +104,7 @@ class HomeView: UIView {
     lazy var newProductCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then({ make in
         make.estimatedItemSize = .init(width: 142, height: 237)
         make.minimumInteritemSpacing = 8
-        make.scrollDirection = .horizontal
+        make.scrollDirection = .horizontal // 수평으로 움직이게 하고
       })).then { make in
           make.showsHorizontalScrollIndicator = false
           make.backgroundColor = .clear
@@ -120,7 +130,7 @@ class HomeView: UIView {
        })).then { make in
            make.showsHorizontalScrollIndicator = false
            make.backgroundColor = .clear
-           make.register(bottomCell.self, forCellWithReuseIdentifier: bottomCell.identifier)
+           make.register(BottomCell.self, forCellWithReuseIdentifier: BottomCell.identifier)
        }
     
     override init(frame: CGRect) {
@@ -129,133 +139,8 @@ class HomeView: UIView {
            setupViews()
            setLayout()
        }
-    class CategoryCell : UICollectionViewCell {
-       static let identifier = "CategoryCell"
-        var categoryImageView = UIImageView().then { make in
-            make.contentMode = .scaleAspectFill
-          }
-           var categoryNameLabel = UILabel().then { make in
-               make.font = UIFont.systemFont(ofSize: 12)
-              make.textColor = .black
-          }
-        
-        override init(frame: CGRect) {
-                super.init(frame: frame)
-            addSubview(categoryImageView)
-                  addSubview(categoryNameLabel)
-            categoryImageView.snp.makeConstraints { make in
-                       make.top.equalToSuperview()
-                       make.height.equalTo(61)
-                       make.width.equalTo(61)
-                   }
-                   categoryNameLabel.snp.makeConstraints { make in
-                       make.bottom.equalToSuperview()
-                       make.centerX.equalTo(categoryImageView)
-                   }
-            }
-        
-        required init?(coder: NSCoder) {
-               fatalError("init(coder:) has not been implemented")
-           }
-        func configure(imageName: String, name: String) {
-               categoryImageView.image = UIImage(named: imageName)
-               categoryNameLabel.text = name
-           }
-    }
-    class NewProductCell : UICollectionViewCell {
-        //꼭 static을 써서 클래스 모든 애들이 공유하는 단일변수 취급을 해야함 static 안쓰면 위에서 접근을 못함
-        static let identifier = "NewProductCell"
-        var NewproductImageView = UIImageView().then { make in
-              make.contentMode = .scaleAspectFill
-           }
-         var brandName = UILabel().then { make in
-             make.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-                make.textColor = .black
-            }
-        
-        lazy var productname = UILabel().then { make in
-            make.font = UIFont.systemFont(ofSize: 14, weight: .light)
-            make.textColor = .black
-            make.numberOfLines = 2
-        }
-       
-        lazy var price = UILabel().then { make in
-            make.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-            make.textColor = .black
-        }
-        var subex = UILabel().then {make in
-            make.font = UIFont.systemFont(ofSize: 13, weight: .light)
-            make.textColor = .black
-            make.text = "즉시 구매가"
-        }
-        override init(frame: CGRect) {
-               super.init(frame: frame)
-            
-                 addSubview(NewproductImageView)
-                 addSubview(brandName)
-                 addSubview(productname)
-                 addSubview(price)
-                 addSubview(subex)
-            
-            // layout
-            NewproductImageView.snp.makeConstraints { make in
-                       make.top.equalToSuperview()
-                       make.height.width.equalTo(142)
-                   }
-                   brandName.snp.makeConstraints { make in
-                       make.top.equalTo(NewproductImageView.snp.bottom).offset(8)
-                       make.left.equalToSuperview().offset(4)
-                   }
-            productname.snp.makeConstraints { make in
-                       make.top.equalTo(brandName.snp.bottom).offset(3)
-                       make.left.equalToSuperview().offset(4)
-                       make.width.equalTo(124)
-                   }
-                   price.snp.makeConstraints { make in
-                       make.top.equalTo(brandName.snp.bottom).offset(43)
-                       make.left.equalToSuperview().offset(4)
-                   }
-                   subex.snp.makeConstraints { make in
-                       make.top.equalTo(price.snp.bottom).offset(2)
-                       make.left.equalToSuperview().offset(4)
-                   }
-           }
-           
-           required init?(coder: NSCoder) {
-               fatalError("init(coder:) has not been implemented")
-           }
-        // configure 메서드 추가
-           func configure(imageName: String, brand: String, productName: String, price: String) {
-               NewproductImageView.image = UIImage(named: imageName)
-               brandName.text = brand
-               productname.text = productName
-               self.price.text = price
-           }
-    }
-    class bottomCell : UICollectionViewCell {
-       static let identifier = "bottomCell"
-        var bottomimage = UIImageView().then{ make in
-            make.contentMode = .scaleAspectFill
-            
-        }
-        override init(frame: CGRect) {
-               super.init(frame: frame)
-            addSubview(bottomimage)
-            bottomimage.snp.makeConstraints{ make in
-                make.edges.equalToSuperview()
-                make.height.equalTo(160)
-                make.width.equalTo(120)
-
-            }
-           }
-           
-           required init?(coder: NSCoder) {
-               fatalError("init(coder:) has not been implemented")
-           }
-        func configure(imageName: String) {
-              bottomimage.image = UIImage(named: imageName)
-          }
-    }
+  
+    
     
        required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
@@ -265,6 +150,9 @@ class HomeView: UIView {
            scrollView.addSubview(contentView)
            
            contentView.addSubview(topStackView)
+        
+       
+        
            contentView.addSubview(category)
            contentView.addSubview(underline)
            contentView.addSubview(LargeImageView)
@@ -276,9 +164,10 @@ class HomeView: UIView {
            contentView.addSubview(winter)
            contentView.addSubview(happy)
            contentView.addSubview(bottomCollectionView)
-           
-           topStackView.addArrangedSubview(searchBar)
-           topStackView.addArrangedSubview(alertButton)
+        
+        topStackView.addArrangedSubview(searchBar)
+        topStackView.addArrangedSubview(alertButton)
+         
        }
     // 위로 레이아웃 맞추기
     private func setLayout() {
@@ -290,17 +179,16 @@ class HomeView: UIView {
                 make.edges.equalTo(scrollView.contentLayoutGuide)
                 make.width.equalTo(scrollView.frameLayoutGuide)
             }
-            
+       
+          
             topStackView.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(6)
-                make.trailing.equalToSuperview().offset(-16)
-                make.leading.equalToSuperview().offset(16)
+                make.top.equalTo(contentView.snp.top).offset(6)
+                make.trailing.equalTo(contentView.snp.trailing).offset(-16)
+                make.leading.equalTo(contentView.snp.leading).offset(16)
                 make.height.equalTo(40)
             }
             
-            alertButton.snp.makeConstraints { make in
-                make.width.height.equalTo(24)
-            }
+       
 
             category.snp.makeConstraints { make in
                 make.top.equalTo(topStackView.snp.bottom).offset(16)
@@ -309,7 +197,13 @@ class HomeView: UIView {
                 make.height.equalTo(27)
             }
 
-        
+        underline.snp.makeConstraints { make in
+            make.top.equalTo(category.snp.bottom).offset(2)
+            make.leading.equalTo(category.snp.leading)
+            make.width.equalTo(60) // 원하는 너비 설정
+            make.height.equalTo(2)
+        }
+
 
             LargeImageView.snp.makeConstraints { make in
                 make.top.equalTo(underline.snp.bottom)
@@ -364,6 +258,6 @@ class HomeView: UIView {
             
         }
    
-    
+  
 }
 

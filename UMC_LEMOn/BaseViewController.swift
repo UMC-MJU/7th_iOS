@@ -15,7 +15,7 @@ class BaseViewController: UITabBarController {
     private let style = StyleViewController()
     private let shop = ShopViewController()
     private let saved = SavedViewController()
-    private let my = UINavigationController(rootViewController: MyViewController())
+    private let my = UINavigationController(rootViewController: myViewController() )
     
  
     

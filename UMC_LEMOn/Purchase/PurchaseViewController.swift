@@ -10,7 +10,7 @@ class PurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        purchaseView.purchaseButton.addTarget(self, action: #selector(showSelectSizeView), for: .touchUpInside)
+     
     }
     
     @objc private func showSelectSizeView() {

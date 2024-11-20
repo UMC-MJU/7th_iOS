@@ -3,133 +3,208 @@ import SnapKit
 
 class PurchaseView: UIView {
     
-    // 상단 이미지와 썸네일 리스트
-    let mainImageView = UIImageView()
-    let thumbnailStackView = UIStackView()
-    let thumbnails: [UIImageView] = (0..<6).map { _ in UIImageView() } // 임시로 6개의 썸네일
+    lazy var LargeImage: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "large")
+        image.contentMode = .scaleAspectFill
+        
+        return image
+    }()
+    lazy var rightPurchase : UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .gray
+        return label
+    }()
+    lazy var price : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.textColor = .black
+        return label
+    }()
     
-    // 상품 정보
-    let priceLabel = UILabel()
-    let productNameLabel = UILabel()
-    let productDescription = UILabel()
-    let priceright = UILabel()
-    let productInfoStackView = UIStackView()
+    lazy var productName : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 19)
+        label.textColor = .black
+        return label
+    }()
     
-    // 하단 버튼 및 북마크
-    let bookmarkButton = UIButton()
-    let purchaseButton = UIButton()
-    let sellButton = UIButton()
-    let buttonStackView = UIStackView()
+    lazy var korName : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .gray
+        return label
+    }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-        addComponents()
-        setupConstraints()
+    lazy var bookMark : UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "bookmark")
+        return image
+        
+    }()
+    
+    lazy var bookMarkDesciption : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .black
+        return label
+    }()
+   
+    
+    lazy var purchasetext : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 19)
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var purchasePrice : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var purchasesubtext: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .darkGray
+        
+        return label
+    }()
+    
+    lazy var selltext: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 19)
+        label.textColor = .white
+        return label
+    }()
+    lazy var sellPrice : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var sellsubtext: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .darkGray
+        
+        return label
+    }()
+    
+    
+    
+    
+    
+    
+    
+    // 스택뷰 쌓기
+    
+    lazy var priceStackView: UIStackView = {
+        let stackview = UIStackView (arrangedSubviews: [rightPurchase, price])
+        stackview.axis = .vertical
+        stackview.spacing = 4
+        return stackview
+    }()
+    lazy var nameStackView: UIStackView = {
+        let stackview = UIStackView (arrangedSubviews: [productName, korName] )
+        stackview.axis = .vertical
+        stackview.spacing = 4
+        return stackview
+    }()
+    lazy var middleStackView: UIStackView = {
+        let stackview = UIStackView (arrangedSubviews: [priceStackView, nameStackView])
+        stackview.axis = .vertical
+        stackview.spacing = 10
+        return stackview
+    }()
+    
+    
+    // 컬렉션 뷰로 작은 이미지 파일들 넣기
+    // 중간에 
+   class purchaseCell : UICollectionViewCell  {
+       static let identifier = "purchaseCell"
+        
+        var purchaseImageView = UIImageView().then { make in
+            make.contentMode = .scaleAspectFill
+        }
+       
+        override init (frame: CGRect){
+            super.init(frame: frame)
+            addSubview(purchaseImageView)
+            purchaseImageView.snp.makeConstraints{ make in
+                make.height.equalTo(53)
+                make.width.equalTo(53)
+            }
+        }
+       required init? (coder: NSCoder){
+           fatalError("init(coder:) has not been implemented")
+       }
+       func configure(imageName: String){
+           purchaseImageView.image = UIImage(named: imageName)
+           
+       }
+    }
+    
+    
+    lazy var purchaseText: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [purchasePrice, purchasesubtext ] )
+        stackview.axis = .vertical
+        stackview.spacing = 2
+        return stackview
+    }()
+    
+    lazy var PurchaseStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [purchaseText, purchasesubtext ] )
+        stackview.axis = .horizontal
+        stackview.spacing = 10
+        return stackview
+    }()
+    
+    lazy var sellText: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [sellPrice, sellsubtext ] )
+        stackview.axis = .vertical
+        stackview.spacing = 2
+        return stackview
+    }()
+    
+    lazy var sellStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [sellText, sellsubtext ] )
+        stackview.axis = .horizontal
+        stackview.spacing = 10
+        return stackview
+    }()
+    
+    lazy var bookMarkStackView: UIStackView = {
+        let stackview = UIStackView (arrangedSubviews: [bookMark, bookMarkDesciption])
+        stackview.axis = .vertical
+        stackview.spacing = 2
+        return stackview
+        
+    }()
+    
+    
+ override init(frame: CGRect) {
+     super.init(frame: frame)
+     self.addComponents()
+     self.addAction()
+     self.addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setupView() {
-        backgroundColor = .white
-        
-        // 메인 이미지 설정
-        mainImageView.contentMode = .scaleAspectFit
-        mainImageView.backgroundColor = .lightGray
-        
-        // 썸네일 스택뷰 설정
-        thumbnailStackView.axis = .horizontal
-        thumbnailStackView.spacing = 8
-        thumbnailStackView.distribution = .fillEqually
-        thumbnails.forEach { imageView in
-            imageView.backgroundColor = .darkGray
-            imageView.clipsToBounds = true
-            thumbnailStackView.addArrangedSubview(imageView)
-        }
-        
-        // 상품 정보 설정
-        priceLabel.text = "228,000원"
-        priceLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        productNameLabel.text = "Matin Kim Logo Coating Jumper"
-        productNameLabel.font = UIFont.systemFont(ofSize: 16)
-        productNameLabel.textColor = .black
-        
-        priceright.text = "즉시 구매가"
-        priceright.font = UIFont.systemFont(ofSize: 14)
-        priceright.textColor = .gray
-        
-        productDescription.text = "마틴 킴 로고 코팅 점퍼"
-        productDescription.font = UIFont.systemFont(ofSize: 14)
-        productDescription.textColor = .gray
-        
-        productInfoStackView.axis = .vertical
-        productInfoStackView.spacing = 4
-        productInfoStackView.addArrangedSubview(priceright)
-        productInfoStackView.addArrangedSubview(priceLabel)
-        
-        productInfoStackView.addArrangedSubview(productNameLabel)
-        productInfoStackView.addArrangedSubview(productDescription)
-        
-        // 하단 버튼 설정
-        bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        bookmarkButton.tintColor = .black
-        
-        purchaseButton.setTitle("구매", for: .normal)
-        purchaseButton.backgroundColor = .red
-        purchaseButton.layer.cornerRadius = 8
-        
-        sellButton.setTitle("판매", for: .normal)
-        sellButton.backgroundColor = .green
-        sellButton.layer.cornerRadius = 8
-        
-        buttonStackView.axis = .horizontal
-        buttonStackView.spacing = 16
-        buttonStackView.distribution = .fillEqually
-        buttonStackView.addArrangedSubview(purchaseButton)
-        buttonStackView.addArrangedSubview(sellButton)
-    }
-    
     private func addComponents() {
-        addSubview(mainImageView)
-        addSubview(thumbnailStackView)
-        addSubview(productInfoStackView)
-        addSubview(bookmarkButton)
-        addSubview(buttonStackView)
+        
     }
-    
-    private func setupConstraints() {
-        mainImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 374, height: 373))
-        }
+    private func addAction(){
         
-        thumbnailStackView.snp.makeConstraints { make in
-            make.top.equalTo(mainImageView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(53)
-        }
+    }
+    private func addConstraints(){
         
-        productInfoStackView.snp.makeConstraints { make in
-            make.top.equalTo(thumbnailStackView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
-        
-        bookmarkButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.bottom.equalToSuperview().offset(-20)
-            make.size.equalTo(CGSize(width: 40, height: 40))
-        }
-        
-        buttonStackView.snp.makeConstraints { make in
-            make.leading.equalTo(bookmarkButton.snp.trailing).offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(bookmarkButton)
-            make.height.equalTo(50)
-        }
     }
 }
 

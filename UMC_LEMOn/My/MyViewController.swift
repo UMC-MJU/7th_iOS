@@ -1,33 +1,39 @@
 import UIKit
-import SnapKit
 
-class MyViewController: UIViewController {
+class myViewController : UIViewController, MyPageViewDelegate
+{
+    private let MyPageView = myPageView()
+        
+    weak var delegate: MyPageViewDelegate?
     
-    // MyPageView 인스턴스 생성
-    private let myPageView = MyPageView()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        // MyPageView 추가
-        view.addSubview(myPageView)
-        
-        // MyPageView 레이아웃 설정
-        myPageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview() // 화면 전체를 채우도록 설정
+            super.viewDidLoad()
+            self.view = MyPageView
+            MyPageView.delegate = self
+            setNavigationBar()
         }
+    // 네비게이션 바 
+    private func setNavigationBar(){
+            
+            let gearImage = UIImage(named: "Gear_icon")
+            let cameraImage = UIImage(named: "Camera_icon")
         
-        // MyPageView의 프로필 관리 버튼 액션 연결
-        myPageView.manageProfileButton.addTarget(self, action: #selector(didTapProfileManageButton), for: .touchUpInside)
-    }
+            let settiongButton = UIBarButtonItem(image: gearImage)
+            let cameraButton = UIBarButtonItem(image: cameraImage)
+           
+            settiongButton.tintColor = .black
+            cameraButton.tintColor = .black
+            
+            navigationItem.leftBarButtonItem = settiongButton
+            navigationItem.rightBarButtonItem = cameraButton
+        }
     
-    @objc
-    private func didTapProfileManageButton() {
-        // 프로필 수정 화면으로 전환
-        let profileEditVC = ProfileEditViewController()
-        profileEditVC.view.backgroundColor = .lightGray
-        navigationController?.pushViewController(profileEditVC, animated: true)
-    }
 }
 
+extension myViewController {
+    func didTapEditProfileButton() {
+        let viewController = EditProfileViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+}
