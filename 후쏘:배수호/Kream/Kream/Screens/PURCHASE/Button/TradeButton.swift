@@ -28,13 +28,13 @@ class TradeButton: UIView, TradeButtonProtocol {
     }
     // MARK: - Properties
     
-    /// 상품 가격 라벨
-    lazy var priceLabel: UILabel = makeLabel(UIFont.systemFont(ofSize: 13, weight: .semibold), .white)
-    /// 즉시 구매가 / 즉시 판매가 표시 라벨
-    lazy var subLabel = makeLabel(UIFont.systemFont(ofSize: 10, weight: .regular), UIColor())
+    /// 상품 가격 레이블
+    lazy var priceLabel: UILabel = makeLabel(font: UIFont.systemFont(ofSize: 13, weight: .semibold), color: .white)
+    /// 즉시 구매가 / 즉시 판매가 표시 레이블
+    lazy var subLabel = makeLabel(font: UIFont.systemFont(ofSize: 10, weight: .regular), color: .black)
     
-    /// 버튼 왼쪽 구매 / 판매 레발
-    lazy var buttonLeftLabel = makeLabel( UIFont.systemFont(ofSize: 16, weight: .semibold), .white)
+    /// 버튼 왼쪽 구매 / 판매 레이블
+    lazy var buttonLeftLabel = makeLabel( font: UIFont.systemFont(ofSize: 16, weight: .semibold), color: .white)
     
     /// priceLabel + subLabel 스택뷰
     lazy var priceInfoStack: UIStackView = {
@@ -49,7 +49,7 @@ class TradeButton: UIView, TradeButtonProtocol {
     // MARK: - Function
     
     /// 레이블 생성 함수
-    private func makeLabel(_ font: UIFont, _ color: UIColor) -> UILabel {
+    private func makeLabel( font: UIFont, color: UIColor) -> UILabel {
         let label = UILabel()
         label.font = font
         label.textColor = color
@@ -69,28 +69,28 @@ class TradeButton: UIView, TradeButtonProtocol {
     
     /// 제약 조건 설정
     private func constraints() {
-        buttonLeftLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(15)
-            $0.bottom.equalToSuperview().offset(-15)
-            $0.left.equalToSuperview().offset(10)
-            $0.width.equalTo(28)
+        buttonLeftLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-15)
+            make.left.equalToSuperview().offset(10)
+            make.width.equalTo(28)
         }
         
-        priceInfoStack.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.left.equalTo(buttonLeftLabel.snp.right).offset(21)
-            $0.width.greaterThanOrEqualTo(53)
-            $0.height.equalTo(30)
+        priceInfoStack.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.left.equalTo(buttonLeftLabel.snp.right).offset(21)
+            make.width.greaterThanOrEqualTo(53)
+            make.height.equalTo(30)
         }
         
-        priceLabel.snp.makeConstraints {
-            $0.width.greaterThanOrEqualTo(30)
-            $0.height.equalTo(16)
+        priceLabel.snp.makeConstraints { make in
+            make.width.greaterThanOrEqualTo(30)
+            make.height.equalTo(16)
         }
         
-        subLabel.snp.makeConstraints {
-            $0.width.greaterThanOrEqualTo(30)
-            $0.height.equalTo(12)
+        subLabel.snp.makeConstraints { make in
+            make.width.greaterThanOrEqualTo(30)
+            make.height.equalTo(12)
         }
     }
     

@@ -137,14 +137,14 @@ class EditProfileView: UIView {
         addSubview(userImage)
         addSubview(userInfoStackView)
         
-        userImage.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(144)
-            $0.centerX.equalToSuperview()
+        userImage.snp.makeConstraints{ make in
+            make.top.equalToSuperview().offset(144)
+            make.centerX.equalToSuperview()
         }
-        userInfoStackView.snp.makeConstraints{
-            $0.top.equalTo(userImage.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(349)
+        userInfoStackView.snp.makeConstraints{ make in
+            make.top.equalTo(userImage.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(349)
         }
         
         // 이메일 입력창 제약조건 설정 (너비 303, 높이 34)

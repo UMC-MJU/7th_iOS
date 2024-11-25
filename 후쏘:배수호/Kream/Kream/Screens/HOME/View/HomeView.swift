@@ -42,9 +42,7 @@ class HomeView: UIView {
     }
 
     private func setupViews() {
-        [homeHeaderView, homeCollectionView].forEach { view in
-            self.addSubview(view)
-        }
+        [homeHeaderView, homeCollectionView].forEach { self.addSubview($0) }
     }
 
     private func setConstraints() {

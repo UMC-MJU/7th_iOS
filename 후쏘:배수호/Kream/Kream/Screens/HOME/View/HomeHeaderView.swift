@@ -53,30 +53,30 @@ class HomeHeaderView: UIView {
     
     /// 제약 조건 설정
     private func constraints() {
-        searchBar.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.equalTo(16)
-            $0.right.equalTo(alertButton.snp.left).offset(-15)
+        searchBar.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalTo(16)
+            make.right.equalTo(alertButton.snp.left).offset(-15)
         }
         
-        alertButton.snp.makeConstraints {
-            $0.centerY.equalTo(searchBar.snp.centerY)
-            $0.right.equalToSuperview().offset(-16)
-            $0.width.height.equalTo(24)
+        alertButton.snp.makeConstraints { make in
+            make.centerY.equalTo(searchBar.snp.centerY)
+            make.right.equalToSuperview().offset(-16)
+            make.width.height.equalTo(24)
         }
         
-        segmentControl.snp.makeConstraints {
-            $0.top.equalTo(searchBar.snp.bottom).offset(8)
-            $0.left.equalToSuperview().offset(14)
-            $0.right.equalToSuperview().offset(-15)
-            $0.height.equalTo(27)
+        segmentControl.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(14)
+            make.right.equalToSuperview().offset(-15)
+            make.height.equalTo(27)
         }
         
-        bottomBorder.snp.makeConstraints {
-            $0.left.right.bottom.equalToSuperview()
-            $0.top.equalTo(segmentControl.snp.bottom).offset(1)
-            $0.height.equalTo(1)
-            $0.width.equalToSuperview()
+        bottomBorder.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(segmentControl.snp.bottom).offset(1)
+            make.height.equalTo(1)
+            make.width.equalToSuperview()
         }
     }
 

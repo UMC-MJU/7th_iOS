@@ -49,27 +49,25 @@ class SectionHeader: UICollectionReusableView, CellHeaderProtocol {
     }
     
     private func addComponents(){
-        [headerTitle, headerSubTitle].forEach { view in
-            self.headerStackView.addArrangedSubview(view)
-        }
+        [headerTitle, headerSubTitle].forEach { self.headerStackView.addArrangedSubview($0) }
         self.addSubview(headerStackView)
     }
     
     private func setConstraints(){
         
-        headerStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.left.right.bottom.equalToSuperview()
+        headerStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.left.right.bottom.equalToSuperview()
         }
         
-        headerTitle.snp.makeConstraints {
-            $0.width.greaterThanOrEqualTo(200)
-            $0.height.equalTo(19)
+        headerTitle.snp.makeConstraints { make in
+            make.width.greaterThanOrEqualTo(200)
+            make.height.equalTo(19)
         }
         
-        headerSubTitle.snp.makeConstraints {
-            $0.width.greaterThanOrEqualTo(50)
-            $0.height.equalTo(19)
+        headerSubTitle.snp.makeConstraints { make in
+            make.width.greaterThanOrEqualTo(50)
+            make.height.equalTo(19)
         }
     }
     

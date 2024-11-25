@@ -171,22 +171,22 @@ class MyPageView: UIView {
     private func addComponents() {
         addSubview(manageUserInfoStackView)
         
-        nameFollowStackView.snp.makeConstraints{
-            $0.height.equalTo(48)
+        nameFollowStackView.snp.makeConstraints{ make in
+            make.height.equalTo(48)
         }
-        manageUserInfoStackView.snp.makeConstraints{
-            $0.top.equalTo(safeAreaLayoutGuide).offset(26)
-            $0.centerX.equalToSuperview()
+        manageUserInfoStackView.snp.makeConstraints{ make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(26)
+            make.centerX.equalToSuperview()
         }
                 
         // 버튼 크기 조정
-        editProfileButton.snp.makeConstraints {
-            $0.width.equalTo(157)
-            $0.height.equalTo(26)
+        editProfileButton.snp.makeConstraints { make in
+            make.width.equalTo(157)
+            make.height.equalTo(26)
         }
-        shareProfileButton.snp.makeConstraints {
-            $0.width.equalTo(157)
-            $0.height.equalTo(26)
+        shareProfileButton.snp.makeConstraints { make in
+            make.width.equalTo(157)
+            make.height.equalTo(26)
         }
     }
     
