@@ -31,9 +31,7 @@ class UserStoryCell: BaseCollectionCell {
     }
     
     private func addComponents(){
-        [imageView, subTitleText].forEach { view in
-            self.addSubview(view)
-        }
+        [imageView, subTitleText].forEach { self.addSubview($0) }
     }
     
     private func setConstraints(){

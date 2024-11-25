@@ -23,10 +23,21 @@ class PurchaseView: UIView {
     /// 상단 제일 큰 상품 이미지
     public lazy var productImageView = UIImageView().then { imageView in
         imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "Purchase_image1")
     }
     
     /// 상품의 다른 색상의 이미지 리스트
-    public lazy var productOptionCollectionView = UICollectionView()
+    public lazy var productOptionCollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 53, height: 53)
+        layout.minimumInteritemSpacing = 8
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ProductOptionCell.self, forCellWithReuseIdentifier: ProductOptionCell.identifier)
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     /// "즉시 구매가" 텍스트 레이블
     private lazy var priceTitleLabel: UILabel = makeLabel("즉시 구매가", UIFont.systemFont(ofSize: 12,weight: .light), .black)
@@ -35,9 +46,9 @@ class PurchaseView: UIView {
     private lazy var priceLabel: UILabel = makeLabel("228,000원", UIFont.systemFont(ofSize: 20,weight: .semibold), .black)
     
     /// 상품의 이름 레이블
-    private lazy var productName: UILabel = makeLabel("Matin Kim Logo Coating Jumprt", UIFont.systemFont(ofSize: 16,weight: .regular), .black)
+    public lazy var productName: UILabel = makeLabel("Matin Kim Logo Coating Jumprt", UIFont.systemFont(ofSize: 16,weight: .regular), .black)
     
-    /// 상품의 한글 이름 레이블
+    /// 상품의 설명 레이블
     public lazy var productDescription: UILabel = makeLabel("마뗑킴 로고 코팅 점퍼 블랙", UIFont.systemFont(ofSize: 12, weight: .regular), UIColor(red: 0.612, green: 0.612, blue: 0.612, alpha: 1))
     
     /// 하단 저장 버튼
@@ -109,59 +120,66 @@ class PurchaseView: UIView {
     }
     
     private func addComponents(){
-        [productImageView].forEach{ self.addSubview($0) }
+        [productImageView, productOptionCollectionView].forEach{ self.addSubview($0) }
         [priceStack, productStack, bottomBackgroundView].forEach{ self.addSubview($0) }
+
         [tagBtn, bottomButtonStack].forEach{ self.bottomBackgroundView.addSubview($0) }
     }
     
     private func setConstraints(){
-        productImageView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(5)
-            $0.left.right.equalToSuperview()
-            $0.height.equalTo(373)
+        productImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(10)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(373)
         }
         
-        priceStack.snp.makeConstraints {
-            $0.top.equalTo(productImageView.snp.bottom).offset(23)
-            $0.left.equalToSuperview().offset(16)
-            $0.width.greaterThanOrEqualTo(50)
-            $0.height.equalTo(42)
+        productOptionCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(productImageView.snp.bottom).offset(20)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(60)
         }
         
-        productStack.snp.makeConstraints {
-            $0.top.equalTo(priceStack.snp.bottom).offset(18)
-            $0.left.equalToSuperview().offset(16)
-            $0.width.greaterThanOrEqualTo(80)
-            $0.height.equalTo(40)
+        priceStack.snp.makeConstraints { make in
+            make.top.equalTo(productOptionCollectionView.snp.bottom).offset(23)
+            make.left.equalToSuperview().offset(16)
+            make.width.greaterThanOrEqualTo(50)
+            make.height.equalTo(42)
         }
         
-        bottomBackgroundView.snp.makeConstraints {
-            $0.bottom.left.right.equalToSuperview()
-            $0.height.equalTo(95)
+        productStack.snp.makeConstraints { make in
+            make.top.equalTo(priceStack.snp.bottom).offset(18)
+            make.left.equalToSuperview().offset(16)
+            make.width.greaterThanOrEqualTo(80)
+            make.height.equalTo(40)
         }
         
-        tagBtn.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(19)
-            $0.top.equalToSuperview().offset(12)
-            $0.height.greaterThanOrEqualTo(30)
-            $0.width.greaterThanOrEqualTo(20)
+        bottomBackgroundView.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(95)
         }
         
-        bottomButtonStack.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.left.equalTo(tagBtn.snp.right).offset(19)
-            $0.width.equalTo(300)
-            $0.height.equalTo(49)
+        tagBtn.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(23)
+            make.top.equalToSuperview().offset(12)
+            make.height.greaterThanOrEqualTo(30)
+            make.width.greaterThanOrEqualTo(20)
         }
         
-        leftBuyBtn.snp.makeConstraints {
-            $0.width.equalTo(147)
-            $0.height.equalTo(49)
+        bottomButtonStack.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.left.equalTo(tagBtn.snp.right).offset(19)
+            make.width.equalTo(300)
+            make.height.equalTo(49)
         }
         
-        rightSellBtn.snp.makeConstraints {
-            $0.width.equalTo(147)
-            $0.height.equalTo(49)
+        leftBuyBtn.snp.makeConstraints { make in
+            make.width.equalTo(147)
+            make.height.equalTo(49)
+        }
+        
+        rightSellBtn.snp.makeConstraints { make in
+            make.width.equalTo(147)
+            make.height.equalTo(49)
         }
     }
     

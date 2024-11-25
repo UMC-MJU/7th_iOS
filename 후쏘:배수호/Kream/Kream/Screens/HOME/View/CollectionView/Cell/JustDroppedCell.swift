@@ -72,78 +72,70 @@ class JustDroppedCell: BaseCollectionCell {
     
     /// stackView에 컴포넌트 추가
     private func addStackView(){
-        [priceLabel, priceDescription].forEach { view in
-            priceTitleStack.addArrangedSubview(view)
-        }
-        [titleText, subTitleText].forEach { view in
-            productTitleStack.addArrangedSubview(view)
-        }
+        [priceLabel, priceDescription].forEach { priceTitleStack.addArrangedSubview($0) }
+        [titleText, subTitleText].forEach { productTitleStack.addArrangedSubview($0) }
     }
     
     /// 컴포넌트 추가
     private func addComponents(){
         
         /* 랜덤 색상 백그라운드 뷰에 컴포넌트 추가 (상품 이미지 + 구매 수 + 태그 버튼) */
-        [imageView, purchaseCount, tagButton].forEach { view in
-            imageBackground.addSubview(view)
-        }
+        [imageView, purchaseCount, tagButton].forEach { imageBackground.addSubview($0) }
         /* Cell에 컴포넌트 추가 ( 상품 스택뷰, 가격 스택뷰, 상품 이미지 ) */
-        [productTitleStack, priceTitleStack, imageBackground].forEach { view in
-            self.addSubview(view)
-        }
+        [productTitleStack, priceTitleStack, imageBackground].forEach { self.addSubview($0) }
     }
     
     /// autoLayout 적용
     private func setConstraints(){
-        imageBackground.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(0)
-            $0.left.right.equalToSuperview().offset(0)
-            $0.height.equalTo(142)
+        imageBackground.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(0)
+            make.left.right.equalToSuperview().offset(0)
+            make.height.equalTo(142)
         }
         
-        purchaseCount.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.right.equalToSuperview().offset(-8)
-            $0.width.greaterThanOrEqualTo(48)
-            $0.height.equalTo(12)
+        purchaseCount.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.width.greaterThanOrEqualTo(48)
+            make.height.equalTo(12)
         }
         
-        tagButton.snp.makeConstraints {
-            $0.top.equalTo(purchaseCount.snp.bottom).offset(92)
-            $0.right.bottom.equalToSuperview().offset(-10)
-            $0.width.equalTo(14.2)
+        tagButton.snp.makeConstraints { make in
+            make.top.equalTo(purchaseCount.snp.bottom).offset(92)
+            make.right.bottom.equalToSuperview().offset(-10)
+            make.width.equalTo(14.2)
         }
         
-        imageView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-            $0.width.lessThanOrEqualTo(123)
-            $0.height.greaterThanOrEqualTo(30)
+        imageView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.lessThanOrEqualTo(123)
+            make.height.greaterThanOrEqualTo(30)
         }
         
         /* 상품 배경에 속해 있는 데이터 */
         
-        productTitleStack.snp.makeConstraints {
-            $0.top.equalTo(imageBackground.snp.bottom).offset(8)
-            $0.left.equalToSuperview().offset(2)
-            $0.width.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(25)
+        productTitleStack.snp.makeConstraints { make in
+            make.top.equalTo(imageBackground.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(2)
+            make.width.equalToSuperview()
+            make.height.greaterThanOrEqualTo(25)
         }
         
-        titleText.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.height.equalTo(14)
+        titleText.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(14)
         }
         
-        subTitleText.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(14)
+        subTitleText.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.greaterThanOrEqualTo(14)
         }
         
-        priceTitleStack.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(0)
-            $0.left.equalToSuperview().offset(2)
-            $0.width.equalToSuperview()
-            $0.height.equalTo(30)
+        priceTitleStack.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(0)
+            make.left.equalToSuperview().offset(2)
+            make.width.equalToSuperview()
+            make.height.equalTo(30)
         }
     }
     
@@ -159,7 +151,7 @@ class JustDroppedCell: BaseCollectionCell {
     
     override func configure(model: any RequiredCellProtocol) {
         guard let justDroppedModel = model as? JustDroppedModel else { return }
-        
+        /* 이미지 */
         imageView.image = UIImage(named: justDroppedModel.imageView)?.downSample(scale: 0.3)
         purchaseCount.text = justDroppedModel.purchaseCnt
         tagButton.setImage(setTagButtonImage(isMark: justDroppedModel.selectedTag), for: .normal)

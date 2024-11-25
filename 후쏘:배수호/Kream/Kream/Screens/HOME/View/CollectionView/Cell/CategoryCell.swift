@@ -35,9 +35,7 @@ class CategoryCell: BaseCollectionCell {
     }
     
     private func addComponents(){
-        [imageView, titleText].forEach { view in
-            addSubview(view)
-        }
+        [imageView, titleText].forEach { self.addSubview($0) }
     }
     
     private func setConstraints(){

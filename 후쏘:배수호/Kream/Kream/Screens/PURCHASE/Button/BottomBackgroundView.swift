@@ -10,7 +10,7 @@ class BottomBackgroundView: UIView {
         
         self.backgroundColor = .white
         self.addSubview(topLine)
-        constraints()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -19,8 +19,7 @@ class BottomBackgroundView: UIView {
     
     // MARK: - Property
     
-    /// 상단 구분선, 피그마를 통해 확대해서 보면 상단 선이 있음을 확인 가능
-    /// 피그마의 라인 색을 적용 안하고 연한색 값을 그냥 넣어서 작성함
+    /// 상단 구분선
     private lazy var topLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
@@ -30,11 +29,11 @@ class BottomBackgroundView: UIView {
     // MARK: - Function
     
     /// 제약 조건 설정
-    private func constraints() {
-        topLine.snp.makeConstraints {
-            $0.top.left.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(1)
+    private func setConstraints() {
+        topLine.snp.makeConstraints { make in
+            make.top.left.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(1)
         }
     }
 }
