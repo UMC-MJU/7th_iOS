@@ -28,6 +28,14 @@ class SelectSizeView: UIView {
         return imageView
     }()
     
+    /// 사이즈 옵션 컬렉션뷰
+    public lazy var sizeOptionCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SizeOptionCell.self, forCellWithReuseIdentifier: SizeOptionCell.identifier)
+        return collectionView
+    }()
+    
     /// 상품 이름 레이블
     private lazy var productNameLabel: UILabel = makeLabel("", UIFont.systemFont(ofSize: 14, weight: .regular), color: .black)
     
@@ -96,7 +104,7 @@ class SelectSizeView: UIView {
     
     /// 컴포넌트 설정
     private func addComponents() {
-        [productImageView, productInfoStackView, bottomBackgroundView].forEach{ self.addSubview($0) }
+        [productImageView, productInfoStackView,sizeOptionCollectionView, bottomBackgroundView].forEach{ self.addSubview($0) }
         [productImageView, productInfoStackView].forEach{ self.addSubview($0) }
         [bottomButtonStackView].forEach{ self.bottomBackgroundView.addSubview($0) }
     }
@@ -116,26 +124,33 @@ class SelectSizeView: UIView {
             make.height.equalTo(35)
         }
         
-        bottomBackgroundView.snp.makeConstraints {
-            $0.bottom.left.right.equalToSuperview()
-            $0.height.equalTo(95)
+        sizeOptionCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(productImageView.snp.bottom).offset(35)
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.height.greaterThanOrEqualTo(115)
         }
         
-        bottomButtonStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(342)
-            $0.height.equalTo(52)
+        bottomBackgroundView.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(95)
         }
         
-        leftFastOrderBtn.snp.makeConstraints {
-            $0.width.equalTo(168)
-            $0.height.equalTo(52)
+        bottomButtonStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(342)
+            make.height.equalTo(52)
         }
         
-        rightOrderBtn.snp.makeConstraints {
-            $0.width.equalTo(168)
-            $0.height.equalTo(52)
+        leftFastOrderBtn.snp.makeConstraints { make in
+            make.width.equalTo(168)
+            make.height.equalTo(52)
+        }
+        
+        rightOrderBtn.snp.makeConstraints { make in
+            make.width.equalTo(168)
+            make.height.equalTo(52)
         }
     }
     
